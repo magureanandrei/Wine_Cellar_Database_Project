@@ -1,15 +1,15 @@
 package Models;
 
-public class WineType {
-    private int wineType_id;
-    private String name;
+public class WineType implements HasID{
+    public int wineType_id;
+    public String name;
 
     public WineType(int wineType_id, String name) {
         this.wineType_id = wineType_id;
         this.name = name;
     }
 
-    public int getWineType_id() {
+    public int getID() {
         return wineType_id;
     }
 

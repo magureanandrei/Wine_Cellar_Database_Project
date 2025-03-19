@@ -1,10 +1,10 @@
 package Models;
 
-public class Users {
-    private int user_id;
-    private String username;
-    private String password_hash;
-    private String role;
+public class Users implements HasID{
+    public int user_id;
+    public String username;
+    public String password_hash;
+    public String role;
 
     public Users(int user_id, String username, String password_hash, String role) {
         this.user_id = user_id;
@@ -13,7 +13,7 @@ public class Users {
         this.role = role;
     }
 
-    public int getUser_id() {
+    public int getID() {
         return user_id;
     }
 

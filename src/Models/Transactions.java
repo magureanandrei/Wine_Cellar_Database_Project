@@ -1,15 +1,15 @@
 package Models;
 
-public class Transactions {
-    private int transaction_id;
-    private int wine_id;
-    private String transaction_type;
-    private String date;
-    private String quantity;
-    private String price_per_bottle;
-    private int user_id;
+public class Transactions implements HasID{
+    public int transaction_id;
+    public int wine_id;
+    public String transaction_type;
+    public String date;
+    public int quantity;
+    public String price_per_bottle;
+    public int user_id;
 
-    public Transactions(int transaction_id, int wine_id, String transaction_type, String date, String quantity, String price_per_bottle, int user_id) {
+    public Transactions (int transaction_id, int wine_id, String transaction_type, String date, int quantity, String price_per_bottle, int user_id) {
         this.transaction_id = transaction_id;
         this.wine_id = wine_id;
         this.transaction_type = transaction_type;
@@ -19,7 +19,9 @@ public class Transactions {
         this.user_id = user_id;
     }
 
-    public int getTransaction_id() {
+
+
+    public int getID() {
         return transaction_id;
     }
 
@@ -51,11 +53,11 @@ public class Transactions {
         this.date = date;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

@@ -1,13 +1,13 @@
 package Models;
 
-public class Wines {
-    private int wine_id;
-    private String name;
-    private int type_id;
-    private int region_id;
-    private String vintage_year;
-    private String alcohol_percentage;
-    private int supplier_id;
+public class Wines implements HasID{
+    public int wine_id;
+    public String name;
+    public int type_id;
+    public int region_id;
+    public String vintage_year;
+    public String alcohol_percentage;
+    public int supplier_id;
 
     public Wines(int wine_id, String name, int type_id, int region_id, String vintage_year, String alcohol_percentage, int supplier_id) {
         this.wine_id = wine_id;
@@ -19,7 +19,7 @@ public class Wines {
         this.supplier_id = supplier_id;
     }
 
-    public int getWine_id() {
+    public int getID() {
         return wine_id;
     }
 

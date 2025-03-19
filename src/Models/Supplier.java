@@ -1,11 +1,11 @@
 package Models;
 
-public class Supplier {
-    private int supplier_id;
-    private String supplier_name;
-    private String contact_email;
-    private String phone;
-    private String address;
+public class Supplier implements HasID{
+    public int supplier_id;
+    public String supplier_name;
+    public String contact_email;
+    public String phone;
+    public String address;
 
     public Supplier(int supplier_id, String supplier_name, String contact_email, String phone, String address) {
         this.supplier_id = supplier_id;
@@ -15,7 +15,7 @@ public class Supplier {
         this.address = address;
     }
 
-    public int getSupplier_id() {
+    public int getID() {
         return supplier_id;
     }
 

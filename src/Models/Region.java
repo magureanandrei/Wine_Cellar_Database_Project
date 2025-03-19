@@ -1,9 +1,9 @@
 package Models;
 
-public class Region {
-    private int region_id;
-    private String region_name;
-    private String country;
+public class Region implements HasID{
+    public int region_id;
+    public String region_name;
+    public String country;
 
     public Region(int region_id, String region_name, String country) {
         this.region_id = region_id;
@@ -11,7 +11,7 @@ public class Region {
         this.country = country;
     }
 
-    public int getRegion_id() {
+    public int getID() {
         return region_id;
     }
 

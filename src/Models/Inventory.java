@@ -1,11 +1,11 @@
 package Models;
 
-public class Inventory {
-    private int inventory_id;
-    private int wine_id;
-    private int location_id;
-    private int quantity;
-    private int bottle_size_ml;
+public class Inventory implements HasID{
+    public int inventory_id;
+    public int wine_id;
+    public int location_id;
+    public int quantity;
+    public int bottle_size_ml;
 
     public Inventory(int inventory_id, int wine_id, int location_id, int quantity, int bottle_size_ml) {
         this.inventory_id = inventory_id;
@@ -15,7 +15,7 @@ public class Inventory {
         this.bottle_size_ml = bottle_size_ml;
     }
 
-    public int getInventory_id() {
+    public int getID() {
         return inventory_id;
     }
 

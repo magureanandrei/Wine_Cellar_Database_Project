@@ -1,10 +1,10 @@
 package Models;
 
-public class CellarLocation {
-    private int location_id;
-    private String section;
-    private String rack_number;
-    private String bottle_position;
+public class CellarLocation implements HasID{
+    public int location_id;
+    public String section;
+    public String rack_number;
+    public String bottle_position;
 
     public CellarLocation(int location_id, String section, String rack_number, String bottle_position) {
         this.location_id = location_id;
@@ -13,7 +13,7 @@ public class CellarLocation {
         this.bottle_position = bottle_position;
     }
 
-    public int getLocation_id() {
+    public int getID() {
         return location_id;
     }
 
