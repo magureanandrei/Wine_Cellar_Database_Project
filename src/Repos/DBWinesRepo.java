@@ -6,6 +6,7 @@ import Models.Wines;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,14 +17,14 @@ public class DBWinesRepo extends DBRepo<Wines> {
 
     @Override
     public void create(Wines obj) {
-        String sql = "INSERT INTO Wine (wine_id, name, type_id, region_id, vintage_year, alcohol_percentage, supplier_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO wines (wine_id, name, type_id, region_id, vintage_year, alcohol_percentage, supplier_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.wine_id);
             statement.setString(2, obj.name);
             statement.setInt(3, obj.type_id);
             statement.setInt(4, obj.region_id);
-            statement.setString(5, obj.vintage_year);
-            statement.setString(6, obj.alcohol_percentage);
+            statement.setInt(5, obj.vintage_year);
+            statement.setInt(6, obj.alcohol_percentage);
             statement.setInt(7, obj.supplier_id);
             statement.execute();
         } catch (SQLException e) {
@@ -33,7 +34,7 @@ public class DBWinesRepo extends DBRepo<Wines> {
 
     @Override
     public Wines get(Integer id) {
-        String sql = "SELECT * FROM Wines WHERE wine_id = ?";
+        String sql = "SELECT * FROM wines WHERE wine_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -49,13 +50,13 @@ public class DBWinesRepo extends DBRepo<Wines> {
 
     @Override
     public void update(Wines obj) {
-        String sql = "UPDATE Wines SET name = ?, type_id = ?, region_id = ?, vintage_year = ?, alcohol_percentage = ?, supplier_id = ?  WHERE wine_id = ?";
+        String sql = "UPDATE wines SET name = ?, type_id = ?, region_id = ?, vintage_year = ?, alcohol_percentage = ?, supplier_id = ?  WHERE wine_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, obj.name);
             statement.setInt(2, obj.type_id);
             statement.setInt(3, obj.region_id);
-            statement.setString(4, obj.vintage_year);
-            statement.setString(5, obj.alcohol_percentage);
+            statement.setInt(4, obj.vintage_year);
+            statement.setInt(5, obj.alcohol_percentage);
             statement.setInt(6, obj.supplier_id);
             statement.setInt(7, obj.wine_id);
             statement.execute();
@@ -66,7 +67,7 @@ public class DBWinesRepo extends DBRepo<Wines> {
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM Wines WHERE wine_id = ?";
+        String sql = "DELETE FROM wines WHERE wine_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.execute();
@@ -77,7 +78,7 @@ public class DBWinesRepo extends DBRepo<Wines> {
 
     @Override
     public List<Wines> getAll() {
-        String sql = "SELECT * FROM Wines";
+        String sql = "SELECT * FROM wines";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
             List<Wines> wines = new ArrayList<>();
@@ -96,8 +97,8 @@ public class DBWinesRepo extends DBRepo<Wines> {
                 resultSet.getString("name"),
                 resultSet.getInt("type_id"),
                 resultSet.getInt("region_id"),
-                resultSet.getString("vintage_year"),
-                resultSet.getString("alcohol_percentage"),
+                resultSet.getInt("vintage_year"),
+                resultSet.getInt("alcohol_percentage"),
                 resultSet.getInt("supplier_id")
         );
     }

@@ -5,6 +5,7 @@ import Models.Inventory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class DBInventoryRepo extends DBRepo<Inventory> {
 
     @Override
     public void create(Inventory obj) {
-        String sql = "INSERT INTO Inventory (inventory_id, wine_id, location_id, quantity, bottle_size_ml) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO inventory (inventory_id, wine_id, location_id, quantity, bottle_size_ml) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.inventory_id);
             statement.setInt(2, obj.wine_id);
@@ -30,7 +31,7 @@ public class DBInventoryRepo extends DBRepo<Inventory> {
 
     @Override
     public Inventory get(Integer id) {
-        String sql = "SELECT * FROM Inventory WHERE inventory_id = ?";
+        String sql = "SELECT * FROM inventory WHERE inventory_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -46,7 +47,7 @@ public class DBInventoryRepo extends DBRepo<Inventory> {
 
     @Override
     public void update(Inventory obj) {
-        String sql = "UPDATE Inventory SET wine_id = ?, location_id = ?, quantity = ?, bottle_size_ml = ? WHERE inventory_id = ?";
+        String sql = "UPDATE inventory SET wine_id = ?, location_id = ?, quantity = ?, bottle_size_ml = ? WHERE inventory_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.wine_id);
             statement.setInt(2, obj.location_id);
@@ -61,7 +62,7 @@ public class DBInventoryRepo extends DBRepo<Inventory> {
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM Inventory WHERE inventory_id = ?";
+        String sql = "DELETE FROM inventory WHERE inventory_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.execute();
@@ -72,7 +73,7 @@ public class DBInventoryRepo extends DBRepo<Inventory> {
 
     @Override
     public List<Inventory> getAll() {
-        String sql = "SELECT * FROM Inventory";
+        String sql = "SELECT * FROM inventory";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
             List<Inventory> inventory = new ArrayList<>();

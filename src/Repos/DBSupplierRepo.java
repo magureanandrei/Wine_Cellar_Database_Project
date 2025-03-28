@@ -6,6 +6,7 @@ import Models.WineType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class DBSupplierRepo extends DBRepo<Supplier> {
 
     @Override
     public void create(Supplier obj) {
-        String sql = "INSERT INTO Supplier (supplier_id, supplier_name, contact_email, phone, address) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO supplier (supplier_id, supplier_name, contact_email, phone, address) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.supplier_id);
             statement.setString(2, obj.supplier_name);
@@ -31,7 +32,7 @@ public class DBSupplierRepo extends DBRepo<Supplier> {
 
     @Override
     public Supplier get(Integer id) {
-        String sql = "SELECT * FROM Supplier WHERE supplier_id = ?";
+        String sql = "SELECT * FROM supplier WHERE supplier_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -47,7 +48,7 @@ public class DBSupplierRepo extends DBRepo<Supplier> {
 
     @Override
     public void update(Supplier obj) {
-        String sql = "UPDATE Supplier SET supplier_name = ?, contact_email = ?, phone = ?, address = ? WHERE supplier_id = ?";
+        String sql = "UPDATE supplier SET supplier_name = ?, contact_email = ?, phone = ?, address = ? WHERE supplier_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, obj.supplier_name);
             statement.setString(2, obj.contact_email);
@@ -62,7 +63,7 @@ public class DBSupplierRepo extends DBRepo<Supplier> {
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM Supplier WHERE supplier_id = ?";
+        String sql = "DELETE FROM supplier WHERE supplier_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.execute();
@@ -73,7 +74,7 @@ public class DBSupplierRepo extends DBRepo<Supplier> {
 
     @Override
     public List<Supplier> getAll() {
-        String sql = "SELECT * FROM ";
+        String sql = "SELECT * FROM supplier";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
             List<Supplier> suppliers = new ArrayList<>();

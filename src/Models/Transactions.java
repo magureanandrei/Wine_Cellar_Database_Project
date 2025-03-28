@@ -6,10 +6,10 @@ public class Transactions implements HasID{
     public String transaction_type;
     public String date;
     public int quantity;
-    public String price_per_bottle;
+    public int price_per_bottle;
     public int user_id;
 
-    public Transactions (int transaction_id, int wine_id, String transaction_type, String date, int quantity, String price_per_bottle, int user_id) {
+    public Transactions (int transaction_id, int wine_id, String transaction_type, String date, int quantity, int price_per_bottle, int user_id) {
         this.transaction_id = transaction_id;
         this.wine_id = wine_id;
         this.transaction_type = transaction_type;
@@ -61,11 +61,11 @@ public class Transactions implements HasID{
         this.quantity = quantity;
     }
 
-    public String getPrice_per_bottle() {
+    public int getPrice_per_bottle() {
         return price_per_bottle;
     }
 
-    public void setPrice_per_bottle(String price_per_bottle) {
+    public void setPrice_per_bottle(int price_per_bottle) {
         this.price_per_bottle = price_per_bottle;
     }
 

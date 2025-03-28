@@ -5,6 +5,7 @@ import Models.WineType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class DBWineTypeRepo extends DBRepo<WineType>{
 
     @Override
     public void create(WineType obj) {
-        String sql = "INSERT INTO WineType (type_id, type_name) VALUES (?, ?)";
+        String sql = "INSERT INTO winetype (type_id, type_name) VALUES (?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.wineType_id);
             statement.setString(2, obj.name);
@@ -27,7 +28,7 @@ public class DBWineTypeRepo extends DBRepo<WineType>{
 
     @Override
     public WineType get(Integer id) {
-        String sql = "SELECT * FROM WineType WHERE type_id = ?";
+        String sql = "SELECT * FROM winetype WHERE type_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -43,7 +44,7 @@ public class DBWineTypeRepo extends DBRepo<WineType>{
 
     @Override
     public void update(WineType obj) {
-        String sql = "UPDATE WineType SET type_name = ? WHERE type_id = ?";
+        String sql = "UPDATE winetype SET type_name = ? WHERE type_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, obj.name);
             statement.setInt(2, obj.wineType_id);
@@ -55,7 +56,7 @@ public class DBWineTypeRepo extends DBRepo<WineType>{
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM WineType WHERE type_id = ?";
+        String sql = "DELETE FROM winetype WHERE type_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.execute();
@@ -66,7 +67,7 @@ public class DBWineTypeRepo extends DBRepo<WineType>{
 
     @Override
     public List<WineType> getAll() {
-        String sql = "SELECT * FROM ";
+        String sql = "SELECT * FROM winetype";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
             List<WineType> wineTypes = new ArrayList<>();

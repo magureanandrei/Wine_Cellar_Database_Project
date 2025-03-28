@@ -3,10 +3,10 @@ package Models;
 public class CellarLocation implements HasID{
     public int location_id;
     public String section;
-    public String rack_number;
-    public String bottle_position;
+    public int rack_number;
+    public int bottle_position;
 
-    public CellarLocation(int location_id, String section, String rack_number, String bottle_position) {
+    public CellarLocation(int location_id, String section, int rack_number, int bottle_position) {
         this.location_id = location_id;
         this.section = section;
         this.rack_number = rack_number;
@@ -29,19 +29,19 @@ public class CellarLocation implements HasID{
         this.section = section;
     }
 
-    public String getRack_number() {
+    public int getRack_number() {
         return rack_number;
     }
 
-    public void setRack_number(String rack_number) {
+    public void setRack_number(int rack_number) {
         this.rack_number = rack_number;
     }
 
-    public String getBottle_position() {
+    public int getBottle_position() {
         return bottle_position;
     }
 
-    public void setBottle_position(String bottle_position) {
+    public void setBottle_position(int bottle_position) {
         this.bottle_position = bottle_position;
     }
 

@@ -5,6 +5,7 @@ import Models.Transactions;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +16,14 @@ public class DBTransactionsRepo extends DBRepo<Transactions> {
 
     @Override
     public void create(Transactions obj) {
-        String sql = "INSERT INTO Transactions (transaction_id, wine_id, transaction_type, date, quantity, price_per_bottle, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO transactions (transaction_id, wine_id, transaction_type, date, quantity, price_per_bottle, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.transaction_id);
             statement.setInt(2, obj.wine_id);
             statement.setString(3, obj.transaction_type);
             statement.setString(4, obj.date);
             statement.setInt(5, obj.quantity);
-            statement.setString(6, obj.price_per_bottle);
+            statement.setInt(6, obj.price_per_bottle);
             statement.setInt(7, obj.user_id);
             statement.execute();
         } catch (SQLException e) {
@@ -32,7 +33,7 @@ public class DBTransactionsRepo extends DBRepo<Transactions> {
 
     @Override
     public Transactions get(Integer id) {
-        String sql = "SELECT * FROM Transactions WHERE transaction_id = ?";
+        String sql = "SELECT * FROM transactions WHERE transaction_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -48,13 +49,13 @@ public class DBTransactionsRepo extends DBRepo<Transactions> {
 
     @Override
     public void update(Transactions obj) {
-        String sql = "UPDATE Transactions SET wine_id = ?, transaction_type = ?, date = ?, quantity = ?, price_per_bottle = ?, user_id = ? WHERE transaction_id = ?";
+        String sql = "UPDATE transactions SET wine_id = ?, transaction_type = ?, date = ?, quantity = ?, price_per_bottle = ?, user_id = ? WHERE transaction_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.wine_id);
             statement.setString(2, obj.transaction_type);
             statement.setString(3, obj.date);
             statement.setInt(4, obj.quantity);
-            statement.setString(5, obj.price_per_bottle);
+            statement.setInt(5, obj.price_per_bottle);
             statement.setInt(6, obj.user_id);
             statement.setInt(7, obj.transaction_id);
             statement.execute();
@@ -65,7 +66,7 @@ public class DBTransactionsRepo extends DBRepo<Transactions> {
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM Transactions WHERE transaction_id = ?";
+        String sql = "DELETE FROM transactions WHERE transaction_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.execute();
@@ -76,7 +77,7 @@ public class DBTransactionsRepo extends DBRepo<Transactions> {
 
     @Override
     public List<Transactions> getAll() {
-        String sql = "SELECT * FROM Transactions";
+        String sql = "SELECT * FROM transactions";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
             List<Transactions> transactions = new ArrayList<>();
@@ -96,7 +97,7 @@ public class DBTransactionsRepo extends DBRepo<Transactions> {
                 resultSet.getString("transaction_type"),
                 resultSet.getString("date"),
                 resultSet.getInt("quantity"),
-                resultSet.getString("price_per_bottle"),
+                resultSet.getInt("price_per_bottle"),
                 resultSet.getInt("user_id")
         );
         return transaction;

@@ -5,11 +5,11 @@ public class Wines implements HasID{
     public String name;
     public int type_id;
     public int region_id;
-    public String vintage_year;
-    public String alcohol_percentage;
+    public int vintage_year;
+    public int alcohol_percentage;
     public int supplier_id;
 
-    public Wines(int wine_id, String name, int type_id, int region_id, String vintage_year, String alcohol_percentage, int supplier_id) {
+    public Wines(int wine_id, String name, int type_id, int region_id, int vintage_year, int alcohol_percentage, int supplier_id) {
         this.wine_id = wine_id;
         this.name = name;
         this.type_id = type_id;
@@ -51,19 +51,19 @@ public class Wines implements HasID{
         this.region_id = region_id;
     }
 
-    public String getVintage_year() {
+    public int getVintage_year() {
         return vintage_year;
     }
 
-    public void setVintage_year(String vintage_year) {
+    public void setVintage_year(int vintage_year) {
         this.vintage_year = vintage_year;
     }
 
-    public String getAlcohol_percentage() {
+    public int getAlcohol_percentage() {
         return alcohol_percentage;
     }
 
-    public void setAlcohol_percentage(String alcohol_percentage) {
+    public void setAlcohol_percentage(int alcohol_percentage) {
         this.alcohol_percentage = alcohol_percentage;
     }
 

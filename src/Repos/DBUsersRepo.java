@@ -5,6 +5,7 @@ import Models.Users;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class DBUsersRepo extends DBRepo<Users> {
 
     @Override
     public void create(Users obj) {
-        String sql = "INSERT INTO Users (user_id, username, password, email, role) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO users (user_id, username, password_hash, role) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.user_id);
             statement.setString(2, obj.username);
@@ -29,7 +30,7 @@ public class DBUsersRepo extends DBRepo<Users> {
 
     @Override
     public Users get(Integer id) {
-        String sql = "SELECT * FROM Users WHERE user_id = ?";
+        String sql = "SELECT * FROM users WHERE user_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -45,7 +46,7 @@ public class DBUsersRepo extends DBRepo<Users> {
 
     @Override
     public void update(Users obj) {
-        String sql = "UPDATE Users SET username = ?, password_hash = ?, role = ? WHERE user_id = ?";
+        String sql = "UPDATE users SET username = ?, password_hash = ?, role = ? WHERE user_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, obj.username);
             statement.setString(2, obj.password_hash);
@@ -59,7 +60,7 @@ public class DBUsersRepo extends DBRepo<Users> {
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM Users WHERE user_id = ?";
+        String sql = "DELETE FROM users WHERE user_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.execute();
@@ -70,7 +71,7 @@ public class DBUsersRepo extends DBRepo<Users> {
 
     @Override
     public List<Users> getAll() {
-        String sql = "SELECT * FROM Users";
+        String sql = "SELECT * FROM users";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
             List<Users> users = new ArrayList<>();

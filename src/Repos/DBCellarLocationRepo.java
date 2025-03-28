@@ -5,6 +5,7 @@ import Models.CellarLocation;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +16,12 @@ public class DBCellarLocationRepo extends DBRepo<CellarLocation> {
 
     @Override
     public void create(CellarLocation obj) {
-        String sql = "INSERT INTO CellarLocation (location_id, section, rack_number, bottle_position) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO cellarlocation (location_id, section, rack_number, bottle_position) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.location_id);
             statement.setString(2, obj.section);
-            statement.setString(3, obj.rack_number);
-            statement.setString(4, obj.bottle_position);
+            statement.setInt(3, obj.rack_number);
+            statement.setInt(4, obj.bottle_position);
             statement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -29,7 +30,7 @@ public class DBCellarLocationRepo extends DBRepo<CellarLocation> {
 
     @Override
     public CellarLocation get(Integer id) {
-        String sql = "SELECT * FROM CellarLocation WHERE location_id = ?";
+        String sql = "SELECT * FROM cellarlocation WHERE location_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -45,11 +46,13 @@ public class DBCellarLocationRepo extends DBRepo<CellarLocation> {
 
     @Override
     public void update(CellarLocation obj) {
-        String sql = "UPDATE CellarLocation SET section = ?, rack_number = ?, bottle_position = ? WHERE location_id = ?";
+        String sql = "UPDATE cellarlocation SET section = ?, rack_number = ?, bottle_position = ? WHERE location_id = ?";
+
+
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, obj.section);
-            statement.setString(2, obj.rack_number);
-            statement.setString(3, obj.bottle_position);
+            statement.setInt(2, obj.rack_number);
+            statement.setInt(3, obj.bottle_position);
             statement.setInt(4, obj.location_id);
             statement.execute();
         } catch (SQLException e) {
@@ -59,7 +62,7 @@ public class DBCellarLocationRepo extends DBRepo<CellarLocation> {
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM CellarLocation WHERE location_id = ?";
+        String sql = "DELETE FROM cellarlocation WHERE location_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.execute();
@@ -70,7 +73,7 @@ public class DBCellarLocationRepo extends DBRepo<CellarLocation> {
 
     @Override
     public List<CellarLocation> getAll() {
-        String sql = "SELECT * FROM CellarLocation";
+        String sql = "SELECT * FROM cellarlocation";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
             List<CellarLocation> locations = new ArrayList<>();
@@ -88,8 +91,8 @@ public class DBCellarLocationRepo extends DBRepo<CellarLocation> {
         return new CellarLocation(
                 resultSet.getInt("location_id"),
                 resultSet.getString("section"),
-                resultSet.getString("rack_number"),
-                resultSet.getString("bottle_position")
+                resultSet.getInt("rack_number"),
+                resultSet.getInt("bottle_position")
         );
     }
 }
