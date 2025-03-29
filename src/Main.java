@@ -1,7 +1,5 @@
 import Models.*;
-
-import java.sql.Connection;
-import java.sql.Statement;
+import Service.Service;
 
 public class Main {
     public static void main(String[] args) throws Exception {

@@ -1,10 +1,14 @@
+package Service;
+
 import Models.*;
 import Repos.*;
 
+import javax.print.CancelablePrintJob;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Service {
     private Connection connection;
@@ -62,8 +66,8 @@ public class Service {
         winerepo.delete(id);
     }
 
-    public void getAllWines(){
-        winerepo.getAll();
+    public List<Wines> getAllWines(){
+        return winerepo.getAll();
     }
 
     public void createWineType(WineType wineType){
@@ -90,8 +94,8 @@ public class Service {
         wineTypeRepo.delete(id);
     }
 
-    public void getAllWineTypes(){
-        wineTypeRepo.getAll();
+    public List<WineType> getAllWineTypes(){
+        return wineTypeRepo.getAll();
     }
 
     public void createRegion(Region region){
@@ -119,8 +123,8 @@ public class Service {
         regionrepo.delete(id);
     }
 
-    public void getAllRegions(){
-        regionrepo.getAll();
+    public List<Region> getAllRegions(){
+        return regionrepo.getAll();
     }
 
     public void createSupplier(Supplier supplier){
@@ -150,8 +154,8 @@ public class Service {
         supplierRepo.delete(id);
     }
 
-    public void getAllSuppliers(){
-        supplierRepo.getAll();
+    public List<Supplier> getAllSuppliers(){
+        return supplierRepo.getAll();
     }
 
     public void createCellarLocation(CellarLocation cellarLocation){
@@ -180,8 +184,8 @@ public class Service {
         cellarLocationRepo.delete(id);
     }
 
-    public void getAllCellarLocations(){
-        cellarLocationRepo.getAll();
+    public List<CellarLocation> getAllCellarLocations(){
+        return cellarLocationRepo.getAll();
     }
 
     public void createInventory(Inventory inventory){
@@ -210,8 +214,8 @@ public class Service {
         inventoryRepo.delete(id);
     }
 
-    public void getAllInventories(){
-        inventoryRepo.getAll();
+    public List<Inventory> getAllInventories(){
+        return inventoryRepo.getAll();
     }
 
     public void createTransaction(Transactions transaction){
@@ -243,8 +247,8 @@ public class Service {
         transactionsRepo.delete(id);
     }
 
-    public void getAllTransactions(){
-        transactionsRepo.getAll();
+    public List<Transactions> getAllTransactions(){
+        return transactionsRepo.getAll();
     }
 
     public void createUser(Users user){
@@ -273,8 +277,8 @@ public class Service {
         userrepo.delete(id);
     }
 
-    public void getAllUsers(){
-        userrepo.getAll();
+    public List<Users> getAllUsers(){
+        return userrepo.getAll();
     }
 
     public void executeStatement(String sql) {
